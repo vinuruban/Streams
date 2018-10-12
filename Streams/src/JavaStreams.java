@@ -2,12 +2,27 @@ import java.lang.String;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.*;
+
+import javax.xml.bind.DatatypeConverter;
+
 import java.util.*;
 import java.nio.file.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.io.IOException;
 
 public class JavaStreams {
 	public static void main(String[] args) throws IOException {
+		String hash = null;
+		try {
+			hash = DatatypeConverter.printHexBinary( 
+			           MessageDigest.getInstance("MD5").digest("password".getBytes("UTF-8")));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(hash);
+		
 		// 1. Integer Stream
 		IntStream
 			.range(1, 10)
